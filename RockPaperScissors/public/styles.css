@@ -1,0 +1,11 @@
+﻿img .selected{
+    background-color: gray;
+}
+
+.player-title{
+    height: 52px;
+}
+
+.sign-container{
+    height: 280px;
+}
