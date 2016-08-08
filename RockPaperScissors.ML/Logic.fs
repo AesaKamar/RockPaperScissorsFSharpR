@@ -67,15 +67,13 @@ type Logic() =
 
 
     //Converts an array of matches into an R Data Frame
-    member this.MatchRecordsToRDataFrame (records : Match array) =
-        records 
+    member this.MatchRecordsToRDataFrame (playerName : string) =
+        let context = new RPSContext()
+        context.Matches.Where(fun x -> x.PlayerName = playerName).OrderByDescending(fun x -> x.Timestamp).ToArray()
+        |> Seq.map (fun x -> x 
+                                |> this.GetMatchHistory 
+                                |> this.CreateMatchHistoryRecord)
+        |> Seq.choose id
         |> Frame.ofRecords
         |> R.as_data_frame
 
-    //let ConvertMatchHistoryToRDataFrame xPreviousMatchesToTrainOn : =
-    //    let context = new RPSContext()
-    //    let RDataFrame = namedParams    [
-    //                                        "7MatchesAgo",  
-    //                                    ]
-    //
-    //    RDataFrame
