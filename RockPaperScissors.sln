@@ -9,7 +9,9 @@ Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "RockPaperScissors.FS", "Roc
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "RockPaperScissors.Data", "RockPaperScissors.Data\RockPaperScissors.Data.fsproj", "{47066F61-BD2B-488B-8B46-9270C1A41E74}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RockPaperScissors.DataAccess", "RockPaperScissors.DataAccess\RockPaperScissors.DataAccess.csproj", "{09C61547-1E0F-47A8-BCAE-448DF7154B9C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RockPaperScissors.Migrations", "RockPaperScissors.DataAccess\RockPaperScissors.Migrations.csproj", "{09C61547-1E0F-47A8-BCAE-448DF7154B9C}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "RockPaperScissors.DataAccess", "RockPaperScissors.DataAccessFs\RockPaperScissors.DataAccess.fsproj", "{C16AB8C2-DF2D-439E-9878-437B753E2954}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,14 @@ Global
 		{09C61547-1E0F-47A8-BCAE-448DF7154B9C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{09C61547-1E0F-47A8-BCAE-448DF7154B9C}.Release|x64.ActiveCfg = Release|x64
 		{09C61547-1E0F-47A8-BCAE-448DF7154B9C}.Release|x64.Build.0 = Release|x64
+		{C16AB8C2-DF2D-439E-9878-437B753E2954}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C16AB8C2-DF2D-439E-9878-437B753E2954}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C16AB8C2-DF2D-439E-9878-437B753E2954}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{C16AB8C2-DF2D-439E-9878-437B753E2954}.Debug|x64.Build.0 = Debug|Any CPU
+		{C16AB8C2-DF2D-439E-9878-437B753E2954}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C16AB8C2-DF2D-439E-9878-437B753E2954}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C16AB8C2-DF2D-439E-9878-437B753E2954}.Release|x64.ActiveCfg = Release|Any CPU
+		{C16AB8C2-DF2D-439E-9878-437B753E2954}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

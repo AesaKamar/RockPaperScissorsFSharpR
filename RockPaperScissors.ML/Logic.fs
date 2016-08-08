@@ -32,6 +32,11 @@ type Logic() =
         | _ , _                         -> 2   // Else P2 wins
 
 
+    //Use IRedisClient.GetTypedClient<HistoryRecord> to speed up these 2 operations in cache
+    member this.MakeMatchHistoryByFastest (rpsMatch: Match)=
+        let context = new RPSContext()
+        ignore
+
     //Constructs an array with the previous 7 matches
     member this.GetMatchHistory (rpsMatch: Match) =
         let context = new RPSContext()

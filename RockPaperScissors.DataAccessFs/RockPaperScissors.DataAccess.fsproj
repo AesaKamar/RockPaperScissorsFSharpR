@@ -5,14 +5,14 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>b9c836b1-b127-4a3f-9340-e998dac18857</ProjectGuid>
+    <ProjectGuid>c16ab8c2-df2d-439e-9878-437b753e2954</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>RockPaperScissors.ML</RootNamespace>
-    <AssemblyName>RockPaperScissors.ML</AssemblyName>
+    <RootNamespace>RockPaperScissors.DataAccessFs</RootNamespace>
+    <AssemblyName>RockPaperScissors.DataAccessFs</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <TargetFSharpCoreVersion>4.4.0.0</TargetFSharpCoreVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <Name>RockPaperScissors.FS</Name>
+    <Name>RockPaperScissors.DataAccess</Name>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -22,7 +22,7 @@
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <WarningLevel>3</WarningLevel>
-    <DocumentationFile>bin\Debug\RockPaperScissors.ML.XML</DocumentationFile>
+    <DocumentationFile>bin\Debug\RockPaperScissors.DataAccessFs.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -31,31 +31,10 @@
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <WarningLevel>3</WarningLevel>
-    <DocumentationFile>bin\Release\RockPaperScissors.ML.XML</DocumentationFile>
+    <DocumentationFile>bin\Release\RockPaperScissors.DataAccessFs.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
     <MinimumVisualStudioVersion Condition="'$(MinimumVisualStudioVersion)' == ''">11</MinimumVisualStudioVersion>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <Tailcalls>false</Tailcalls>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <WarningLevel>3</WarningLevel>
-    <DocumentationFile>bin\Debug\RockPaperScissors.ML.XML</DocumentationFile>
-    <PlatformTarget>x64</PlatformTarget>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <Tailcalls>true</Tailcalls>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <WarningLevel>3</WarningLevel>
-    <DocumentationFile>bin\Release\RockPaperScissors.ML.XML</DocumentationFile>
-    <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '11.0'">
@@ -72,27 +51,12 @@
   <Import Project="$(FSharpTargetsPath)" />
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
-    <Compile Include="Logic.fs" />
-    <Content Include="packages.config" />
-    <None Include="Test.fsx" />
-    <Content Include="Web.config" />
-    <Content Include="Web.Debug.config" />
-    <Content Include="Web.Release.config" />
+    <Compile Include="RPSContext.fs" />
+    <None Include="Script.fsx" />
     <Content Include="App.config" />
+    <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Deedle">
-      <HintPath>..\packages\Deedle.1.2.5\lib\net40\Deedle.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Deedle.RProvider.Plugin">
-      <HintPath>..\packages\Deedle.RPlugin.1.2.5\lib\net40\Deedle.RProvider.Plugin.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="DynamicInterop">
-      <HintPath>..\packages\DynamicInterop.0.7.4\lib\net40\DynamicInterop.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -105,24 +69,20 @@
     <Reference Include="FSharp.Core, Version=$(TargetFSharpCoreVersion), Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <Private>True</Private>
     </Reference>
-    <Reference Include="RDotNet">
-      <HintPath>..\packages\R.NET.Community.1.6.5\lib\net40\RDotNet.dll</HintPath>
+    <Reference Include="ServiceStack.Common">
+      <HintPath>..\packages\ServiceStack.Common.4.0.60\lib\net40\ServiceStack.Common.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="RDotNet.FSharp">
-      <HintPath>..\packages\R.NET.Community.FSharp.1.6.5\lib\net40\RDotNet.FSharp.dll</HintPath>
+    <Reference Include="ServiceStack.Interfaces">
+      <HintPath>..\packages\ServiceStack.Interfaces.4.0.60\lib\portable-wp80+sl5+net40+win8+wpa81+monotouch+monoandroid+xamarin.ios10\ServiceStack.Interfaces.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="RDotNet.NativeLibrary">
-      <HintPath>..\packages\R.NET.Community.1.6.5\lib\net40\RDotNet.NativeLibrary.dll</HintPath>
+    <Reference Include="ServiceStack.Redis">
+      <HintPath>..\packages\ServiceStack.Redis.4.0.60\lib\net40\ServiceStack.Redis.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="RProvider">
-      <HintPath>..\packages\RProvider.1.1.20\lib\net40\RProvider.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="RProvider.Runtime">
-      <HintPath>..\packages\RProvider.1.1.20\lib\net40\RProvider.Runtime.dll</HintPath>
+    <Reference Include="ServiceStack.Text">
+      <HintPath>..\packages\ServiceStack.Text.4.0.60\lib\net40\ServiceStack.Text.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -131,14 +91,8 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Numerics" />
-    <Reference Include="System.Web.Entity" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\RockPaperScissors.DataAccessFs\RockPaperScissors.DataAccess.fsproj">
-      <Name>RockPaperScissors.DataAccess</Name>
-      <Project>{c16ab8c2-df2d-439e-9878-437b753e2954}</Project>
-      <Private>True</Private>
-    </ProjectReference>
     <ProjectReference Include="..\RockPaperScissors.Data\RockPaperScissors.Data.fsproj">
       <Name>RockPaperScissors.Data</Name>
       <Project>{47066f61-bd2b-488b-8b46-9270c1a41e74}</Project>

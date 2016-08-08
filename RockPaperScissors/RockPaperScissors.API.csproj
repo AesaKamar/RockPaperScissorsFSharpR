@@ -130,8 +130,8 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\RockPaperScissors.DataAccess\RockPaperScissors.DataAccess.csproj">
-      <Project>{09c61547-1e0f-47a8-bcae-448df7154b9c}</Project>
+    <ProjectReference Include="..\RockPaperScissors.DataAccessFs\RockPaperScissors.DataAccess.fsproj">
+      <Project>{c16ab8c2-df2d-439e-9878-437b753e2954}</Project>
       <Name>RockPaperScissors.DataAccess</Name>
     </ProjectReference>
     <ProjectReference Include="..\RockPaperScissors.Data\RockPaperScissors.Data.fsproj">
