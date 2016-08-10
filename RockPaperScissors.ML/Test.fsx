@@ -10,6 +10,9 @@
 #r @"./bin/debug/DynamicInterop.dll"
 #r @"./bin/debug/RProvider.Runtime.dll"
 #r @"./bin/debug/EntityFramework.dll"
+#r @"./bin/debug/LinqOptimizer.Base.dll"
+#r @"./bin/debug/LinqOptimizer.Core.dll"
+#r @"./bin/debug/LinqOptimizer.FSharp.dll"
 
 open RDotNet
 open RProvider
@@ -28,14 +31,14 @@ R.set_seed("314159") |> ignore
 let context = new RockPaperScissors.DataAccess.RPSContext()
 let Logic = new RockPaperScissors.Logic()
 
-//let a = 
-//    context.Matches.OrderByDescending(fun x -> x.Timestamp).ToArray()
-//    |> Seq.map (fun x -> x 
-//                            |> Logic.GetMatchHistory 
-//                            |> Logic.CreateMatchHistoryRecord)
-//    |> Seq.choose id
-//    |> Frame.ofRecords
-//    |> R.as_data_frame
 
-let a = Logic.MatchRecordsToRDataFrame "Aesa"
+let AllUserDataFrame = Logic.MatchRecordsToRDataFrame "Aesa"
 
+let inTrainRows = caret.R.createDataPartition(y=AllUserDataFrame.AsList().["ThisP1Choice"], p=0.70, list=true)
+
+let testDeedleFrame : Frame<string, string> = inTrainRows.GetValue()
+
+//let testData = R.subset(x=AllUserDataFrame, paramArray= (inTrainRows.AsList() ))
+//let testDate = AllUserDataFrame.AsList().["-inTrainRows"]
+
+//let proportion = R.nrow(inTrainRows)/(R.nrow(AllUserData))
