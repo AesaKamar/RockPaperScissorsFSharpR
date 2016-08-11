@@ -81,10 +81,27 @@
     <Content Include="Web.Debug.config" />
     <Content Include="Web.Release.config" />
     <Content Include="App.config" />
+    <Content Include="License-LGPL.txt" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Accord">
       <HintPath>..\packages\Accord.3.1.0-alpha\lib\net45\Accord.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Accord.Controls">
+      <HintPath>..\packages\Accord.Controls.3.1.0-alpha\lib\net45\Accord.Controls.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Accord.IO">
+      <HintPath>..\packages\Accord.IO.3.1.0-alpha\lib\net45\Accord.IO.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Accord.MachineLearning">
+      <HintPath>..\packages\Accord.MachineLearning.3.1.0-alpha\lib\net45\Accord.MachineLearning.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Accord.MachineLearning.GPL">
+      <HintPath>..\packages\Accord.MachineLearning.GPL.3.1.0-alpha\lib\net45\Accord.MachineLearning.GPL.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Accord.Math">
@@ -93,14 +110,6 @@
     </Reference>
     <Reference Include="Accord.Statistics">
       <HintPath>..\packages\Accord.Statistics.3.1.0-alpha\lib\net45\Accord.Statistics.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Deedle">
-      <HintPath>..\packages\Deedle.1.2.5\lib\net40\Deedle.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Deedle.RProvider.Plugin">
-      <HintPath>..\packages\Deedle.RPlugin.1.2.5\lib\net40\Deedle.RProvider.Plugin.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="DynamicInterop">
@@ -131,26 +140,6 @@
     <Reference Include="FSharp.Core, Version=$(TargetFSharpCoreVersion), Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <Private>True</Private>
     </Reference>
-    <Reference Include="RDotNet">
-      <HintPath>..\packages\R.NET.Community.1.6.5\lib\net40\RDotNet.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="RDotNet.FSharp">
-      <HintPath>..\packages\R.NET.Community.FSharp.1.6.5\lib\net40\RDotNet.FSharp.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="RDotNet.NativeLibrary">
-      <HintPath>..\packages\R.NET.Community.1.6.5\lib\net40\RDotNet.NativeLibrary.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="RProvider">
-      <HintPath>..\packages\RProvider.1.1.20\lib\net40\RProvider.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="RProvider.Runtime">
-      <HintPath>..\packages\RProvider.1.1.20\lib\net40\RProvider.Runtime.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -158,6 +147,10 @@
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Numerics" />
     <Reference Include="System.Web.Entity" />
+    <Reference Include="ZedGraph">
+      <HintPath>..\packages\ZedGraph.5.1.7\lib\net35-Client\ZedGraph.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RockPaperScissors.DataAccessFs\RockPaperScissors.DataAccess.fsproj">

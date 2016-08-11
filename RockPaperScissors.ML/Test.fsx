@@ -1,44 +1,48 @@
-﻿#I "../packages/RProvider.1.1.20"
-#load "../packages/RProvider.1.1.20/RProvider.fsx"
-#load "../packages/Deedle.1.2.5/Deedle.fsx"
-#r @"./bin/debug/RockPaperScissors.Data.dll"
+﻿#r @"./bin/debug/RockPaperScissors.Data.dll"
 #r @"./bin/debug/RockPaperScissors.DataAccessFS.dll"
 #r @"./bin/debug/RockPaperScissors.Ml.dll"
-#r @"../../packages/EntityFramework.6.1.3/lib/net45/EntityFramework.dll"
-#r @"./bin/debug/Deedle.dll"
-#r @"./bin/debug/Deedle.RProvider.Plugin.dll"
+#r @"./bin/debug/EntityFramework.dll"
 #r @"./bin/debug/DynamicInterop.dll"
-#r @"./bin/debug/RProvider.Runtime.dll"
 #r @"./bin/debug/EntityFramework.dll"
 #r @"./bin/debug/LinqOptimizer.Base.dll"
 #r @"./bin/debug/LinqOptimizer.Core.dll"
 #r @"./bin/debug/LinqOptimizer.FSharp.dll"
+#r @"./bin/debug/Accord.dll"
+#r @"./bin/debug/Accord.Statistics.dll"
+#r @"./bin/debug/Accord.Controls.dll"
+#r @"./bin/debug/Accord.MachineLearning.dll"
 
-open RDotNet
-open RProvider
-open RProvider.``base``
-open RProvider.datasets
-open RProvider.neuralnet
-open RProvider.caret
 open System.Linq
-open Deedle
 open System.Data.Entity
 open RockPaperScissors.Data
 open RockPaperScissors.DataAccessFs
+open System
+open System.Data
 
-R.set_seed("314159") |> ignore
+open Accord
+open Accord.Statistics.Models.Regression
+open Accord.Statistics.Models.Regression.Fitting
+open Accord.Controls
+open Accord.IO
+open Accord.Math
+open Accord.Statistics.Distributions.Univariate
+open Accord.MachineLearning.Bayes
+open Accord.MachineLearning.DecisionTrees
+
+
+
 
 let context = new RockPaperScissors.DataAccess.RPSContext()
 let Logic = new RockPaperScissors.Logic()
 
+let input = 
+    Logic.MyMatchHistoryAsTable "Aesa"
 
-let AllUserDataFrame = Logic.MatchRecordsToRDataFrame "Aesa"
+let output = Logic.FromMatchHistoryTableGenerateWinners input
 
-let inTrainRows = caret.R.createDataPartition(y=AllUserDataFrame.AsList().["ThisP1Choice"], p=0.70, list=true)
+let listOfDecisionVariables =  List.init 14 (fun x -> DecisionVariable.Discrete("", new IntRange(0, 5) ))
+let decisionTree: DecisionTree = new DecisionTree(inputs= listOfDecisionVariables.ToList(), classes= 3)
 
-let testDeedleFrame : Frame<string, string> = inTrainRows.GetValue()
 
-//let testData = R.subset(x=AllUserDataFrame, paramArray= (inTrainRows.AsList() ))
-//let testDate = AllUserDataFrame.AsList().["-inTrainRows"]
-
-//let proportion = R.nrow(inTrainRows)/(R.nrow(AllUserData))
+//let rec teach(): unit =
+//    match teacher.Run(input, output) with
