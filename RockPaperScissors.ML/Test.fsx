@@ -28,6 +28,7 @@ open Accord.Math
 open Accord.Statistics.Distributions.Univariate
 open Accord.MachineLearning.Bayes
 open Accord.MachineLearning.DecisionTrees
+open Accord.MachineLearning.DecisionTrees.Learning
 
 
 
@@ -35,14 +36,43 @@ open Accord.MachineLearning.DecisionTrees
 let context = new RockPaperScissors.DataAccess.RPSContext()
 let Logic = new RockPaperScissors.Logic()
 
-let input = 
+let inputs = 
     Logic.MyMatchHistoryAsTable "Aesa"
 
-let output = Logic.FromMatchHistoryTableGenerateWinners input
+let outputs = Logic.FromMatchHistoryTableGenerateWinners inputs
 
-let listOfDecisionVariables =  List.init 14 (fun x -> DecisionVariable.Discrete("", new IntRange(0, 5) ))
-let decisionTree: DecisionTree = new DecisionTree(inputs= listOfDecisionVariables.ToList(), classes= 3)
+Console.WriteLine(inputs)
+Console.WriteLine(outputs)
+
+let listOfDecisionVariables =  
+    [
+        DecisionVariable.Discrete("Prior7P1Choice", new IntRange(0, 2));
+        DecisionVariable.Discrete("Prior7Winner"  , new IntRange(0, 2));
+        DecisionVariable.Discrete("Prior6P1Choice", new IntRange(0, 2));
+        DecisionVariable.Discrete("Prior6Winner"  , new IntRange(0, 2));
+        DecisionVariable.Discrete("Prior5P1Choice", new IntRange(0, 2));
+        DecisionVariable.Discrete("Prior5Winner"  , new IntRange(0, 2));
+        DecisionVariable.Discrete("Prior4P1Choice", new IntRange(0, 2));
+        DecisionVariable.Discrete("Prior4Winner"  , new IntRange(0, 2));
+        DecisionVariable.Discrete("Prior3P1Choice", new IntRange(0, 2));
+        DecisionVariable.Discrete("Prior3Winner"  , new IntRange(0, 2));
+        DecisionVariable.Discrete("Prior2P1Choice", new IntRange(0, 2));
+        DecisionVariable.Discrete("Prior2Winner"  , new IntRange(0, 2));
+        DecisionVariable.Discrete("Prior1P1Choice", new IntRange(0, 2));
+        DecisionVariable.Discrete("Prior1Winner"  , new IntRange(0, 2));
+        DecisionVariable.Discrete("ThisP1Choice"  , new IntRange(0, 2));
+    ]                                                             
+
+let decisionTree = new DecisionTree(inputs= listOfDecisionVariables.ToList(), classes= 3)
+
+
+let teacher = new Accord.MachineLearning.DecisionTrees.Learning.ID3Learning(decisionTree)
+
+let error = teacher.Run(inputs, outputs)
 
 
 //let rec teach(): unit =
-//    match teacher.Run(input, output) with
+//    match teacher.Run(inputs, outputs) with
+//    | x when x > 0.20 -> teach()
+//    | _ -> ()
+

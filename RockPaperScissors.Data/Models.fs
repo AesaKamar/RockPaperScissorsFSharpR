@@ -50,3 +50,22 @@ type public LearningModel =
         [<Range(0,2)>]      Prior1Winner:   int;
         [<Range(0,2)>]      ThisP1Choice:   int;
     }
+module DataConstants = 
+    let ColumnHeaders = 
+        [|
+            "Prior7P1Choice" ;
+            "Prior7Winner"   ;
+            "Prior6P1Choice" ;
+            "Prior6Winner"   ;
+            "Prior5P1Choice" ;
+            "Prior5Winner"   ;
+            "Prior4P1Choice" ;
+            "Prior4Winner"   ;
+            "Prior3P1Choice" ;
+            "Prior3Winner"   ;
+            "Prior2P1Choice" ;
+            "Prior2Winner"   ;
+            "Prior1P1Choice" ;
+            "Prior1Winner"   ;
+            "ThisP1Choice"   ;
+        |]
