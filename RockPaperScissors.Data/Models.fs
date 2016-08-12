@@ -14,7 +14,7 @@ type Choice =
 
 //Create a category which is a record type for persistance
 [<CLIMutable>]
-[<JsonObject(MemberSerialization=MemberSerialization.OptOut)>]
+[<JsonObject(MemberSerialization=MemberSerialization.OptIn)>]
 type public Match =
     {
             [<JsonProperty(NullValueHandling = NullValueHandling.Ignore)>][<Required>][<Key>]
