@@ -52,7 +52,6 @@
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
     <Compile Include="RPSContext.fs" />
-    <None Include="Script.fsx" />
     <Content Include="App.config" />
     <Content Include="packages.config" />
   </ItemGroup>

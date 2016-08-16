@@ -17,17 +17,17 @@ type Choice =
 [<JsonObject(MemberSerialization=MemberSerialization.OptIn)>]
 type public Match =
     {
-            [<JsonProperty(NullValueHandling = NullValueHandling.Ignore)>][<Required>][<Key>]
+                                [<JsonProperty(NullValueHandling = NullValueHandling.Ignore)>][<Required>][<Key>]
         mutable Id: int;
-            [<JsonProperty(NullValueHandling = NullValueHandling.Ignore)>][<Required>]                
+                                [<JsonProperty(NullValueHandling = NullValueHandling.Ignore)>][<Required>]                
         mutable PlayerName: string;
-            [<JsonProperty(NullValueHandling = NullValueHandling.Ignore)>][<Required>]                
+                                [<JsonProperty(NullValueHandling = NullValueHandling.Ignore)>][<Required>]                
         mutable P1Choice: Choice;
-            [<JsonProperty(NullValueHandling = NullValueHandling.Ignore)>][<Required>]                
+                                [<JsonProperty(NullValueHandling = NullValueHandling.Ignore)>][<Required>]                
         mutable P2Choice: Choice;
-            [<JsonProperty(NullValueHandling = NullValueHandling.Ignore)>][<Required>][<Range(0,2)>]  
+                                [<JsonProperty(NullValueHandling = NullValueHandling.Ignore)>][<Required>][<Range(0,2)>]  
         mutable Winner: int;
-            [<JsonProperty(NullValueHandling = NullValueHandling.Ignore)>][<Required>]                
+                                [<JsonProperty(NullValueHandling = NullValueHandling.Ignore)>][<Required>]                
         mutable Timestamp: System.DateTime;
     }
 

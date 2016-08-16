@@ -73,7 +73,6 @@
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
     <Compile Include="Models.fs" />
-    <None Include="Script.fsx" />
     <Content Include="App.config" />
     <Content Include="packages.config" />
     <Content Include="Web.config" />

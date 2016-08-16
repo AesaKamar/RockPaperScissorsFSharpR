@@ -8,7 +8,6 @@ open System.Linq
 open System.Collections.Generic
 open System
 
-
 open Accord
 open Accord.Statistics.Models.Regression
 open Accord.Statistics.Models.Regression.Fitting
@@ -58,21 +57,6 @@ type Logic() =
                                             Some(learningRecord)
         | x -> None
 
-    //Validates we conly create match frames where there are 7 valid historical games
-    member this.CreateMatchHistoryDataRow (matchHistoryArray8 : Match array, dataTable: DataTable)=
-        match matchHistoryArray8 with
-        | [| p7;p6;p5;p4;p3;p2;p1;t0 |] -> 
-            dataTable.Rows.Add(
-                int p7.P1Choice, int p7.P2Choice, 
-                int p6.P1Choice, int p6.P2Choice,
-                int p5.P1Choice, int p5.P2Choice,
-                int p4.P1Choice, int p4.P2Choice,
-                int p3.P1Choice, int p3.P2Choice,
-                int p2.P1Choice, int p2.P2Choice,
-                int p1.P1Choice, int p1.P2Choice,
-                int t0.P1Choice) |> ignore
-        | _ -> ()
-
 
     //When supplied a player name, this gets a historical view of all games with a frame of past 7 games
     member this.MyMatchHistoryAsTable (playerName : string) =
@@ -82,38 +66,6 @@ type Logic() =
                                 |> this.GetMatchHistory 
                                 |> this.CreateMatchHistoryArray)
         |> Array.choose id
-
-     //When supplied a player name, this gets a historical view of all games with a frame of past 7 games
-    member this.MyMatchHistoryAsDataTable (playerName : string) =
-        let mutable table = new DataTable()
-        do
-            table.Columns.Add("Prior7P1Choice", typeof<int>) |> ignore
-            table.Columns.Add("Prior7Winner"  , typeof<int>) |> ignore
-            table.Columns.Add("Prior6P1Choice", typeof<int>) |> ignore
-            table.Columns.Add("Prior6Winner"  , typeof<int>) |> ignore
-            table.Columns.Add("Prior5P1Choice", typeof<int>) |> ignore
-            table.Columns.Add("Prior5Winner"  , typeof<int>) |> ignore
-            table.Columns.Add("Prior4P1Choice", typeof<int>) |> ignore
-            table.Columns.Add("Prior4Winner"  , typeof<int>) |> ignore
-            table.Columns.Add("Prior3P1Choice", typeof<int>) |> ignore
-            table.Columns.Add("Prior3Winner"  , typeof<int>) |> ignore
-            table.Columns.Add("Prior2P1Choice", typeof<int>) |> ignore
-            table.Columns.Add("Prior2Winner"  , typeof<int>) |> ignore
-            table.Columns.Add("Prior1P1Choice", typeof<int>) |> ignore
-            table.Columns.Add("Prior1Winner"  , typeof<int>) |> ignore
-            table.Columns.Add("ThisP1Choice"  , typeof<int>) |> ignore           
-                                       
-        let context = new RPSContext()
-        context.Matches.Where(fun x -> x.PlayerName = playerName)
-            .OrderByDescending(fun x -> x.Timestamp)
-            .ToArray()
-            |> Array.map (fun x -> 
-                let matchHistory8 = 
-                    x |> this.GetMatchHistory 
-                this.CreateMatchHistoryDataRow (matchHistory8, table) |> ignore) 
-            |> ignore
-
-        table
 
 
     member this.FromMatchHistoryTableGenerateWinners (table : int [][] ) = 

@@ -41,8 +41,8 @@ let inputs =
 
 let outputs = Logic.FromMatchHistoryTableGenerateWinners inputs
 
-Console.WriteLine(inputs)
-Console.WriteLine(outputs)
+//Console.WriteLine(inputs)
+//Console.WriteLine(outputs)
 
 let listOfDecisionVariables =  
     [
@@ -60,7 +60,7 @@ let listOfDecisionVariables =
         DecisionVariable.Discrete("Prior2Winner"  , new IntRange(0, 2));
         DecisionVariable.Discrete("Prior1P1Choice", new IntRange(0, 2));
         DecisionVariable.Discrete("Prior1Winner"  , new IntRange(0, 2));
-        DecisionVariable.Discrete("ThisP1Choice"  , new IntRange(0, 2));
+//        DecisionVariable.Discrete("ThisP1Choice"  , new IntRange(0, 2));
     ]                                                             
 
 let decisionTree = new DecisionTree(inputs= listOfDecisionVariables.ToList(), classes= 3)
@@ -68,11 +68,14 @@ let decisionTree = new DecisionTree(inputs= listOfDecisionVariables.ToList(), cl
 
 let teacher = new Accord.MachineLearning.DecisionTrees.Learning.ID3Learning(decisionTree)
 
-let error = teacher.Run(inputs, outputs)
+let inputsMinusLastCol = 
+    inputs |> Array.map (fun x -> x.[0..(x.Length-2)])
 
+//Console.WriteLine(inputsMinusLastCol.[0..5])
+//Console.WriteLine(outputs.[0..5])
 
-//let rec teach(): unit =
-//    match teacher.Run(inputs, outputs) with
-//    | x when x > 0.20 -> teach()
-//    | _ -> ()
+let runner = teacher.Run(inputsMinusLastCol.[0..50], outputs.[0..50])
+
+let error = teacher.ComputeError(inputsMinusLastCol.[50..70], outputs.[50..70])
+
 
