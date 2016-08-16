@@ -1,4 +1,6 @@
-﻿#r @"./bin/debug/RockPaperScissors.Data.dll"
+﻿//In F# Scripts, we have to manually link all of our DLL dependencies. 
+//This is ONLY in scripts, not in managed projects
+#r @"./bin/debug/RockPaperScissors.Data.dll"
 #r @"./bin/debug/RockPaperScissors.DataAccessFS.dll"
 #r @"./bin/debug/RockPaperScissors.Ml.dll"
 #r @"./bin/debug/EntityFramework.dll"
