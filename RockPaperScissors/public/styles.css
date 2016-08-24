@@ -9,3 +9,11 @@
 .sign-container{
     height: 280px;
 }
+
+.player-sign{
+    cursor:pointer;
+}
+
+.player-sign:active{
+    background-color: gray;
+}

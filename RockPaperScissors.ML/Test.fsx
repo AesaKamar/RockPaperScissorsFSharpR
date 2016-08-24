@@ -39,9 +39,7 @@ let context = new RockPaperScissors.DataAccess.RPSContext()
 let Logic = new RockPaperScissors.Logic()
 let Training = new RockPaperScissors.Training()
 
-let inputs = 
-    Logic.MyMatchHistoryAsTable "Aesa"
-
+let inputs = Logic.MyMatchHistoryAsTable "Aesa"
 let outputs = Logic.FromMatchHistoryTableGenerateWinners inputs
 
 

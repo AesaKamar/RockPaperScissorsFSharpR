@@ -47,16 +47,39 @@ namespace RockPaperScissors.Controllers
             if (Match.PlayerName == null)
                 return BadRequest("PlayerName is invalid");
 
+            //Initialize some stuff
+            Choice AIChoice = new Choice();
+            Match.Timestamp = DateTime.Now;
 
-            var Confidence = .33;
-            Choice AIChoice = Choice.Rock;
+            //Set up our data for training
+            var MatchHistoryTable = Logic.MyMatchHistoryAsTable(Match.PlayerName);
+            var InTrain = Logic.FromMatchHistoryTableOmitWinners(MatchHistoryTable);
+            var OutTrain = Logic.FromMatchHistoryTableGenerateWinners(MatchHistoryTable);
+ 
 
-            if(Confidence <= .33)
+            //Give it a random Calue if we don't have enough training data
+            if(InTrain.Length <= 7)
             {
                 Array Values = Enum.GetValues(typeof(Choice));
                 Random Random = new Random();
                 AIChoice = (Choice)Values.GetValue(Random.Next(Values.Length));
             }
+            else
+            {
+                //Train a new Model
+                var Training = new Training();
+                Training.Run(InTrain, OutTrain);
+
+                //Get the most recent match frame and make sure we put in this match
+                var ThisFrame = Logic.MostRecentMatchFrame(Match);
+
+                //Decide on the AI choice
+                var PredictedPlayerChoice = (Choice)Training.Decide(ThisFrame);
+                AIChoice = Logic.WinAgainst(PredictedPlayerChoice);
+            }
+
+
+
             Match.P2Choice = AIChoice;
 
             using (var context = new RPSContext())

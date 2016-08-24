@@ -9,6 +9,8 @@
     <script type="text/javascript" src="index.controller.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.3.3/js/tether.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.14.1/lodash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.1/Chart.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.1/Chart.min.js"></script>
     <!-- Style Includes -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.3/css/bootstrap.min.css" integrity="sha384-MIwDKRSSImVFAZCVLtU0LMDdON6KVCrZHyVQQj6e8wIEJkW4tvwqXrbMIya1vriY" crossorigin="anonymous" />
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.3/js/bootstrap.min.js" integrity="sha384-ux8v3A6CPtOTqOzMKiuo3d/DomGaaClxFYdCu2HPMBEkf6x2xiDyJ7gkXU0MWwaD" crossorigin="anonymous"></script>
@@ -28,11 +30,11 @@
             <div class="col-xs-6 center-block">
                 <div class="player-title input-group input-group-lg">
                     <input type="text" class="form-control" placeholder="Player 1"
-                            aria-describedby="sizing-addon1" ng-model="PlayerName" required>
+                           aria-describedby="sizing-addon1" ng-model="PlayerName" required>
                 </div>
                 <hr />
-                <div ng-repeat="sign in hand_signs" class="sign-container">
-                    <img ng-src="img/{{sign.name}}.png" ng-click="createMatch(sign)"/>
+                <div ng-repeat="sign in hand_signs" class="sign-container player-sign btn btn-default">
+                    <img ng-src="img/{{sign.name}}.png" ng-click="createMatch(sign)" />
                     <br /><br />
                 </div>
             </div>
@@ -40,12 +42,14 @@
                 <div class="player-title"><h3>Player 2 (Our AI)</h3></div>
                 <hr />
                 <div class="sign-container">
-                    
+
                     <br /><br />
                 </div>
                 <div class="sign-container">
                     <img ng-src="img/AI-{{hand_signs[this_match.P2Choice].name}}.png" />
-                    <br /><br />
+                    <br />
+                    {{this_match.Timestamp}}
+                    <br />
                 </div>
                 <div class="sign-container">
 
@@ -57,9 +61,10 @@
     <div class="container">
         <hr />
         Match Information Goes Here
+        <canvas id="WinningsChart" width="400" height="400"></canvas>
     </div>
 
-    
+
     <footer class="">
         <br /><br /><hr />
         <div>Icons made by <a href="http://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
