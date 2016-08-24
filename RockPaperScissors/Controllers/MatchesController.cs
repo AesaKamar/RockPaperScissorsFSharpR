@@ -44,6 +44,9 @@ namespace RockPaperScissors.Controllers
         public IHttpActionResult Shoot([FromBody] object input)
         {
             var Match = (input as JObject).ToObject<Match>();
+            if (Match.PlayerName == null)
+                return BadRequest("PlayerName is invalid");
+
 
             var Confidence = .33;
             Choice AIChoice = Choice.Rock;

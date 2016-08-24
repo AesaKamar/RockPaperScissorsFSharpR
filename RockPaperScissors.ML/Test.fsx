@@ -37,47 +37,26 @@ open Accord.MachineLearning.DecisionTrees.Learning
 
 let context = new RockPaperScissors.DataAccess.RPSContext()
 let Logic = new RockPaperScissors.Logic()
+let Training = new RockPaperScissors.Training()
 
 let inputs = 
     Logic.MyMatchHistoryAsTable "Aesa"
 
 let outputs = Logic.FromMatchHistoryTableGenerateWinners inputs
 
-//Console.WriteLine(inputs)
-//Console.WriteLine(outputs)
-
-let listOfDecisionVariables =  
-    [
-        DecisionVariable.Discrete("Prior7P1Choice", new IntRange(0, 2));
-        DecisionVariable.Discrete("Prior7Winner"  , new IntRange(0, 2));
-        DecisionVariable.Discrete("Prior6P1Choice", new IntRange(0, 2));
-        DecisionVariable.Discrete("Prior6Winner"  , new IntRange(0, 2));
-        DecisionVariable.Discrete("Prior5P1Choice", new IntRange(0, 2));
-        DecisionVariable.Discrete("Prior5Winner"  , new IntRange(0, 2));
-        DecisionVariable.Discrete("Prior4P1Choice", new IntRange(0, 2));
-        DecisionVariable.Discrete("Prior4Winner"  , new IntRange(0, 2));
-        DecisionVariable.Discrete("Prior3P1Choice", new IntRange(0, 2));
-        DecisionVariable.Discrete("Prior3Winner"  , new IntRange(0, 2));
-        DecisionVariable.Discrete("Prior2P1Choice", new IntRange(0, 2));
-        DecisionVariable.Discrete("Prior2Winner"  , new IntRange(0, 2));
-        DecisionVariable.Discrete("Prior1P1Choice", new IntRange(0, 2));
-        DecisionVariable.Discrete("Prior1Winner"  , new IntRange(0, 2));
-//        DecisionVariable.Discrete("ThisP1Choice"  , new IntRange(0, 2));
-    ]                                                             
-
-let decisionTree = new DecisionTree(inputs= listOfDecisionVariables.ToList(), classes= 3)
 
 
-let teacher = new Accord.MachineLearning.DecisionTrees.Learning.ID3Learning(decisionTree)
+let inputsMinusLastCol = Logic.FromMatchHistoryTableOmitWinners inputs
 
-let inputsMinusLastCol = 
-    inputs |> Array.map (fun x -> x.[0..(x.Length-2)])
 
-//Console.WriteLine(inputsMinusLastCol.[0..5])
-//Console.WriteLine(outputs.[0..5])
 
-let runner = teacher.Run(inputsMinusLastCol.[0..50], outputs.[0..50])
+let TrainIn = inputsMinusLastCol.Take(20).ToArray()
+let TrainOut = outputs.Take(20).ToArray()
+let TestIn = inputsMinusLastCol.Skip(Math.Max(0, inputsMinusLastCol.Count() - 20)).ToArray()
+let TestOut = outputs.Skip(Math.Max(0, outputs.Count() - 20)).ToArray()
 
-let error = teacher.ComputeError(inputsMinusLastCol.[50..70], outputs.[50..70])
+
+let runner = Training.Run TrainIn TrainOut
+let error = Training.Error TestIn TestOut
 
 

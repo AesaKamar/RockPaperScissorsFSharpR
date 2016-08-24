@@ -71,3 +71,7 @@ type Logic() =
     member this.FromMatchHistoryTableGenerateWinners (table : int [][] ) = 
         table 
         |> Array.map(fun x -> x.[14])
+
+    member this.FromMatchHistoryTableOmitWinners (table : int [][]) =
+        table 
+        |> Array.map (fun x -> x.[0..(x.Length-2)])
