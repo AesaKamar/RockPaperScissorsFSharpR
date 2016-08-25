@@ -73,12 +73,12 @@ type Logic() =
 
 
     //When supplied a player name, this gets a historical view of all games with a frame of past 7 games
-    member this.MyMatchHistoryAsTable (playerName : string) =
+    member this.MyMatchHistoryAsTable (playerName : string) length =
         let context = new RPSContext()
         context.Matches
             .Where(fun x -> x.PlayerName = playerName)
             .OrderByDescending(fun x -> x.Timestamp)
-            .Take(14)
+            .Take(length)
             .ToArray()
         |> Array.map (fun x -> x 
                                 |> this.GetMatchHistory 

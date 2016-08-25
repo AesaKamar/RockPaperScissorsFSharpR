@@ -50,9 +50,10 @@ namespace RockPaperScissors.Controllers
             //Initialize some stuff
             Choice AIChoice = new Choice();
             Match.Timestamp = DateTime.Now;
+            var numMatchesToTrainOn = 30;
 
             //Set up our data for training
-            var MatchHistoryTable = Logic.MyMatchHistoryAsTable(Match.PlayerName);
+            var MatchHistoryTable = Logic.MyMatchHistoryAsTable(Match.PlayerName, numMatchesToTrainOn);
             var InTrain = Logic.FromMatchHistoryTableOmitWinners(MatchHistoryTable);
             var OutTrain = Logic.FromMatchHistoryTableGenerateWinners(MatchHistoryTable);
  
