@@ -78,10 +78,6 @@
     <Compile Include="Training.fs" />
     <None Include="Test.fsx" />
     <Content Include="packages.config" />
-    <Content Include="Web.config" />
-    <Content Include="Web.Debug.config" />
-    <Content Include="Web.Release.config" />
-    <Content Include="App.config" />
     <Content Include="License-LGPL.txt" />
   </ItemGroup>
   <ItemGroup>

@@ -4,10 +4,11 @@ open ServiceStack.Redis
 open ServiceStack.Redis.Generic
 open System.Data.Entity
 open RockPaperScissors.Data
+open System
+open System.Configuration
 
 type RPSContext() = 
-    inherit DbContext("_Default")
-
+    inherit DbContext("RPSContext")
     [<DefaultValue>] 
     val mutable matches : DbSet<Match>
     member this.Matches 

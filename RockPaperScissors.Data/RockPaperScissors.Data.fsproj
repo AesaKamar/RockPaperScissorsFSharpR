@@ -73,11 +73,7 @@
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
     <Compile Include="Models.fs" />
-    <Content Include="App.config" />
     <Content Include="packages.config" />
-    <Content Include="Web.config" />
-    <Content Include="Web.Debug.config" />
-    <Content Include="Web.Release.config" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="EntityFramework">
