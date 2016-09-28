@@ -50,7 +50,7 @@ namespace RockPaperScissors.Controllers
             //Initialize some stuff
             Choice AIChoice = new Choice();
             Match.Timestamp = DateTime.Now;
-            var numMatchesToTrainOn = 30;
+            var numMatchesToTrainOn = 14;
 
             //Set up our data for training
             var MatchHistoryTable = Logic.MyMatchHistoryAsTable(Match.PlayerName, numMatchesToTrainOn);
@@ -58,7 +58,7 @@ namespace RockPaperScissors.Controllers
             var OutTrain = Logic.FromMatchHistoryTableGenerateWinners(MatchHistoryTable);
  
 
-            //Give it a random Calue if we don't have enough training data
+            //Give it a random Value if we don't have enough training data
             if(InTrain.Length <= 7)
             {
                 Array Values = Enum.GetValues(typeof(Choice));
